@@ -1,0 +1,14 @@
+﻿模型,MAE,MSE,r2_score
+LinearRegression,38.26,3497.62,0.71
+KNNRegressor,36.76,3672.3,0.69
+SVR,65.05,11568.91,0.04
+Ridge,38.26,3497.62,0.71
+Lasso,38.22,3507.76,0.71
+MLPRegressor,36.47,3328.03,0.72
+DecisionTree,33.34,3843.83,0.68
+ExtraTree,36.27,4151.28,0.65
+XGBoost,23.95,2020.27,0.83
+RandomForest,25.0,2154.84,0.82
+AdaBoost,60.9,5676.6,0.53
+GradientBoost,27.18,2234.54,0.81
+Bagging,26.53,2474.62,0.79

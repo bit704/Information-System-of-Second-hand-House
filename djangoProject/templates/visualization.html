@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>可视化</title>
+    <link rel="stylesheet" href="static/css/common.css">
+    <link rel="stylesheet" href="static/css/data_text.css">
+    <link rel="stylesheet" href="static/css/form.css">
+    <script src="static/js/dataset.js"></script>
+    <script src="static/js/echarts.js"></script>
+    <script src="static/js/cdMap.js"></script>
+    <script src="static/js/ecStat.js"></script>
+    <script src="static/js/shine.js"></script>
+</head>
+<body>
+<div class="header" style="background: #034c6a">
+	<ul class="nav">
+		<li>
+			<a href="home">首页</a>
+		</li>
+        <li>
+			<a href="visualization">可视化展示</a>
+		</li>
+        <li>
+			<a href="forecast">价格预测</a>
+		</li>
+        <li>
+			<a href="recommend">房屋推荐</a>
+		</li>
+	</ul>
+</div>
+<div class="data_content">
+    <div class="data_info">
+        <div class="info_1 fl">
+            <div class="text_1">
+                <div class="fl">
+                    <div class="fl" id="v1">
+                        <p>单位面积价格</p>
+                        <p>15802</p>
+                    </div>
+                </div>
+                <div class="fl">
+                    <div class="fl" id="v2">
+                        <p>总成交面积（平方米）</p>
+                        <p>1744874.3</p>
+                    </div>
+                </div>
+                <div class="fl">
+                    <div class="fl" id="v3">
+                        <p>总成交额（万元）</p>
+                        <p>3032629.5</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info_2 fl">
+            <div class="text_2">
+                <div class="fl">
+                    <div class="fl" id="v4">
+                        <p>最大成交面积（平方米）</p>
+                        <p>536.2</p>
+                    </div>
+                </div>
+                <div class="fl">
+                    <div class="fl" id="v5">
+                        <p>最高成交额（万元）</p>
+                        <p>1800</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info_3 fr">
+            <div class="text_3">
+                <div class="fl">
+                    <div class="fl" id="v6">
+                        <p>总关注数（人）</p>
+                        <p>404220</p>
+                    </div>
+                </div>
+                <div class="fl">
+                    <div class="fl" id="v7">
+                        <p>总成交量（套）</p>
+                        <p>19353</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="data_main">
+        <div class="main_left fl">
+            <div class="left_1">
+                <div id="left_1_name" class="main_title">
+                    面积与单位价格
+                </div>
+                <div id="scatter" style="width: 100%;height: 90%;margin-top: 20px"></div>
+            </div>
+            <div class="left_2">
+                <div id="left_2_name" class="main_title">
+                    挂牌量与时间
+                </div>
+                <div id="time" style="width: 100%;height: 90%;margin-top: 20px"></div>
+            </div>
+        </div>
+        <div class="main_center fl">
+            <div class="center_text">
+                <div id="main_name" class="main_title">
+                    成都部分区单位价格
+                </div>
+                <div id='main' style="width:100%;height: 100%;"></div>
+            </div>
+        </div>
+        <div class="main_right fr">
+            <div class="right_1">
+                <div id="right_1_name" class="main_title">
+                    建造年份占比
+                </div>
+                <div id="buildYear" style="width: 100%;height: 90%;margin-top: 20px"></div>
+            </div>
+            <div class="right_2">
+                <div id="right_2_name" class="main_title">
+                    房型数量与单位价格
+                </div>
+                <div id="roomType" style="width: 100%;height: 90%;margin-top: 20px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="data_bottom">
+        <div class="bottom_1 fl">
+            <div id="bottom_1_name" class="main_title">
+                时间与单位价格
+            </div>
+            <div id="time_aPrice" style="width: 100%;height: 90%;margin-top: 20px"></div>
+        </div>
+        <div class="bottom_center fl">
+            <div class="bottom_2 fl">
+                <div id="bottom_2_name" class="main_title">
+                    关注数与总价
+                </div>
+                <div id="attention_price" style="width: 100%;height: 90%;margin-top: 20px"></div>
+            </div>
+            <div class="bottom_3 fl">
+                <div id="bottom_3_name" class="main_title">
+                    房型和面积
+                </div>
+                <div id="roomType_area" style="width: 100%;height: 90%;margin-top: 20px"></div>
+            </div>
+        </div>
+        <div class="bottom_4 fr">
+            <div id="bottom_4_name" class="main_title">
+                总楼层数占比
+            </div>
+            <div id="allFloor" style="width: 100%;height: 90%;margin-top: 20px"></div>
+        </div>
+    </div>
+    <div class="data_end">
+        <div class="end_1 fl">
+            <div id="end_1_name" class="main_title">
+                <!--                展示屏1-->
+            </div>
+            <div id="screen1" style="width: 100%;height: 90%;margin-top: 20px"></div>
+        </div>
+        <div class="end_2 fr">
+            <div id="end_2_name" class="main_title">
+<!--                展示屏2-->
+            </div>
+            <div id="screen2" style="width: 100%;height: 90%;margin-top: 20px"></div>
+        </div>
+    </div>
+</div>
+<script>
+    let chart_map = echarts.init(document.getElementById('main'),'shine');
+    chart_map.setOption({
+        tooltip: {
+            trigger: 'item',
+            formatter: '{b}<br/>{c} (万元 / m2)'
+        },
+        legend: {
+            left: 'right',
+            selectedMode: 'single',
+            data: ['2018', '2019', '2020'],
+            selected: {
+                '2018': true, '2019': false, '2020': false
+            }
+        },
+        visualMap: {
+            min: 10000,
+            max: 20000,
+            text: ['High', 'Low'],
+            realtime: false,
+            calculable: true,
+            inRange: {
+                color: ['lightskyblue', 'yellow', 'red']
+            }
+        },
+        series: [{
+            name: '2018',
+            type: 'map',
+            map: '510100_sichuan_chengdu',
+            label: {
+                show: true
+            },
+            data: [
+                {name:'双流区',value: 12661.1},
+                {name:'成华区',value: 15097.9},
+                {name:'武侯区',value: 16115.2},
+                {name:'温江区',value: 11498.7},
+                {name:'郫都区',value: 10526.3},
+                {name:'金牛区',value: 14190.1},
+                {name:'锦江区',value: 17076.8},
+                {name:'青羊区',value: 16898.5}
+            ]
+        },{
+            name: '2019',
+            type: 'map',
+            map: '510100_sichuan_chengdu',
+            label: {
+                show: true
+            },
+            data: [
+                {name:'双流区',value: 12941.2},
+                {name:'成华区',value: 15148.0},
+                {name:'武侯区',value: 15899.5},
+                {name:'温江区',value: 11785.1},
+                {name:'郫都区',value: 10809.6},
+                {name:'金牛区',value: 13982.1},
+                {name:'锦江区',value: 18135.9},
+                {name:'青羊区',value: 16818.0}
+            ]
+        },{
+            name: '2020',
+            type: 'map',
+            map: '510100_sichuan_chengdu',
+            label: {
+                show: true
+            },
+            data: [
+                {name:'双流区',value: 14458.1},
+                {name:'成华区',value: 16213.5},
+                {name:'武侯区',value: 16598.6},
+                {name:'温江区',value: 12036.3},
+                {name:'郫都区',value: 10674.2},
+                {name:'金牛区',value: 14448.9},
+                {name:'锦江区',value: 19470.4},
+                {name:'青羊区',value: 18691.6}
+            ]
+        }]
+    });
+
+    let chart_area_aPrice = echarts.init(document.getElementById('scatter'),'shine');
+    let chart_YM_numbers = echarts.init(document.getElementById('time'),'shine');
+    let chart_buildYear = echarts.init(document.getElementById('buildYear'),'shine');
+    let chart_roomType = echarts.init(document.getElementById('roomType'),'shine');
+    let chart_time_aPrice = echarts.init(document.getElementById('time_aPrice'),'shine');
+    let chart_attention_price = echarts.init(document.getElementById('attention_price'),'shine');
+    let chart_roomType_area = echarts.init(document.getElementById('roomType_area'),'shine');
+    let chart_allFloor = echarts.init(document.getElementById('allFloor'),'shine');
+
+    let new_in = 2;
+    let district;
+    let chart_screen_1 = echarts.init(document.getElementById('screen1'),'shine');
+    let chart_screen_2 = echarts.init(document.getElementById('screen2'),'shine');
+
+    chart_map.on('click', function (params) {
+
+        switch (params.name) {
+            case "双流区":
+                district = 0;
+                document.getElementById("v1").innerHTML = "<p>单位面积价格</p>" + "<p>13325.9</p>";
+                document.getElementById("v2").innerHTML = "<p>总成交面积（平方米）</p>" + "<p>146672</p>";
+                document.getElementById("v3").innerHTML = "<p>总成交额（万元）</p>" + "<p>194889.7</p>";
+                document.getElementById("v4").innerHTML = "<p>最大成交面积（平方米）</p>" + "<p>364.7</p>";
+                document.getElementById("v5").innerHTML = "<p>最高成交额（万元）</p>" + "<p>802</p>";
+                document.getElementById("v6").innerHTML = "<p>总关注数（人）</p>" + "<p>31396</p>";
+                document.getElementById("v7").innerHTML = "<p>总成交量（套）</p>" + "<p>1469</p>";
+                chart_buildYear.setOption(slq_buildYear);
+                chart_YM_numbers.setOption(slq_YM_numbers);
+                chart_area_aPrice.setOption(slq_area_aPrice);
+                chart_roomType.setOption(slq_roomType);
+                chart_time_aPrice.setOption(slq_time_Aprice);
+                chart_attention_price.setOption(slq_price_attention);
+                chart_roomType_area.setOption(slq_roomType_area);
+                chart_allFloor.setOption(slq_allfloor);
+                break;
+            case "成华区":
+                district = 1;
+                document.getElementById("v1").innerHTML = "<p>单位面积价格</p>" + "<p>16317.4</p>";
+                document.getElementById("v2").innerHTML = "<p>总成交面积（平方米）</p>" + "<p>189488.2</p>";
+                document.getElementById("v3").innerHTML = "<p>总成交额（万元）</p>" + "<p>321993.2</p>";
+                document.getElementById("v4").innerHTML = "<p>最大成交面积（平方米）</p>" + "<p>310.1</p>";
+                document.getElementById("v5").innerHTML = "<p>最高成交额（万元）</p>" + "<p>1180</p>";
+                document.getElementById("v6").innerHTML = "<p>总关注数（人）</p>" + "<p>39197</p>";
+                document.getElementById("v7").innerHTML = "<p>总成交量（套）</p>" + "<p>2400</p>";
+                chart_buildYear.setOption(chq_buildYear);
+                chart_YM_numbers.setOption(chq_YM_numbers);
+                chart_area_aPrice.setOption(chq_area_aPrice);
+                chart_roomType.setOption(chq_roomType);
+                chart_time_aPrice.setOption(chq_time_Aprice);
+                chart_attention_price.setOption(chq_price_attention);
+                chart_roomType_area.setOption(chq_roomType_area);
+                chart_allFloor.setOption(chq_allfloor);
+                break;
+            case "武侯区":
+                district = 2;
+                document.getElementById("v1").innerHTML = "<p>单位面积价格</p>" + "<p>16963.4</p>";
+                document.getElementById("v2").innerHTML = "<p>总成交面积（平方米）</p>" + "<p>214181.8</p>";
+                document.getElementById("v3").innerHTML = "<p>总成交额（万元）</p>" + "<p>375125.6</p>";
+                document.getElementById("v4").innerHTML = "<p>最大成交面积（平方米）</p>" + "<p>335.8</p>";
+                document.getElementById("v5").innerHTML = "<p>最高成交额（万元）</p>" + "<p>1280</p>";
+                document.getElementById("v6").innerHTML = "<p>总关注数（人）</p>" + "<p>49930</p>";
+                document.getElementById("v7").innerHTML = "<p>总成交量（套）</p>" + "<p>2400</p>";
+                chart_buildYear.setOption(whq_buildYear);
+                chart_YM_numbers.setOption(whq_YM_numbers);
+                chart_area_aPrice.setOption(whq_area_aPrice);
+                chart_roomType.setOption(whq_roomType);
+                chart_time_aPrice.setOption(whq_time_Aprice);
+                chart_attention_price.setOption(whq_price_attention);
+                chart_roomType_area.setOption(whq_roomType_area);
+                chart_allFloor.setOption(whq_allfloor);
+                break;
+            case "温江区":
+                district = 3;
+                document.getElementById("v1").innerHTML = "<p>单位面积价格</p>" + "<p>11989.7</p>";
+                document.getElementById("v2").innerHTML = "<p>总成交面积（平方米）</p>" + "<p>129592.1</p>";
+                document.getElementById("v3").innerHTML = "<p>总成交额（万元）</p>" + "<p>157810.3</p>";
+                document.getElementById("v4").innerHTML = "<p>最大成交面积（平方米）</p>" + "<p>267.1</p>";
+                document.getElementById("v5").innerHTML = "<p>最高成交额（万元）</p>" + "<p>555</p>";
+                document.getElementById("v6").innerHTML = "<p>总关注数（人）</p>" + "<p>26036</p>";
+                document.getElementById("v7").innerHTML = "<p>总成交量（套）</p>" + "<p>1290</p>";
+                chart_buildYear.setOption(wjq_buildYear);
+                chart_YM_numbers.setOption(wjq_YM_numbers);
+                chart_area_aPrice.setOption(wjq_area_aPrice);
+                chart_roomType.setOption(wjq_roomType);
+                chart_time_aPrice.setOption(wjq_time_Aprice);
+                chart_attention_price.setOption(wjq_price_attention);
+                chart_roomType_area.setOption(wjq_roomType_area);
+                chart_allFloor.setOption(wjq_allfloor);
+                break;
+            case "郫都区":
+                district = 4;
+                document.getElementById("v1").innerHTML = "<p>单位面积价格</p>" + "<p>10988.7</p>";
+                document.getElementById("v2").innerHTML = "<p>总成交面积（平方米）</p>" + "<p>38305</p>";
+                document.getElementById("v3").innerHTML = "<p>总成交额（万元）</p>" + "<p>42659.8</p>";
+                document.getElementById("v4").innerHTML = "<p>最大成交面积（平方米）</p>" + "<p>310.4</p>";
+                document.getElementById("v5").innerHTML = "<p>最高成交额（万元）</p>" + "<p>570</p>";
+                document.getElementById("v6").innerHTML = "<p>总关注数（人）</p>" + "<p>13895</p>";
+                document.getElementById("v7").innerHTML = "<p>总成交量（套）</p>" + "<p>390</p>";
+                chart_buildYear.setOption(pdq_buildYear);
+                chart_YM_numbers.setOption(pdq_YM_numbers);
+                chart_area_aPrice.setOption(pdq_area_aPrice);
+                chart_roomType.setOption(pdq_roomType);
+                chart_time_aPrice.setOption(pdq_time_Aprice);
+                chart_attention_price.setOption(pdq_price_attention);
+                chart_roomType_area.setOption(pdq_roomType_area);
+                chart_allFloor.setOption(pdq_allfloor);
+                break;
+            case "金牛区":
+                district = 5;
+                document.getElementById("v1").innerHTML = "<p>单位面积价格</p>" + "<p>14943.4</p>";
+                document.getElementById("v2").innerHTML = "<p>总成交面积（平方米）</p>" + "<p>135222.1</p>";
+                document.getElementById("v3").innerHTML = "<p>总成交额（万元）</p>" + "<p>207602.9</p>";
+                document.getElementById("v4").innerHTML = "<p>最大成交面积（平方米）</p>" + "<p>316.4</p>";
+                document.getElementById("v5").innerHTML = "<p>最高成交额（万元）</p>" + "<p>700</p>";
+                document.getElementById("v6").innerHTML = "<p>总关注数（人）</p>" + "<p>27224</p>";
+                document.getElementById("v7").innerHTML = "<p>总成交量（套）</p>" + "<p>1598</p>";
+                chart_buildYear.setOption(jnq_buildYear);
+                chart_YM_numbers.setOption(jnq_YM_numbers);
+                chart_area_aPrice.setOption(jnq_area_aPrice);
+                chart_roomType.setOption(jnq_roomType);
+                chart_time_aPrice.setOption(jnq_time_Aprice);
+                chart_attention_price.setOption(jnq_price_attention);
+                chart_roomType_area.setOption(jnq_roomType_area);
+                chart_allFloor.setOption(jnq_allfloor);
+                break;
+            case "锦江区":
+                district = 6;
+                document.getElementById("v1").innerHTML = "<p>单位面积价格</p>" + "<p>19826.2</p>";
+                document.getElementById("v2").innerHTML = "<p>总成交面积（平方米）</p>" + "<p>191435.5</p>";
+                document.getElementById("v3").innerHTML = "<p>总成交额（万元）</p>" + "<p>400055.7</p>";
+                document.getElementById("v4").innerHTML = "<p>最大成交面积（平方米）</p>" + "<p>274.9</p>";
+                document.getElementById("v5").innerHTML = "<p>最高成交额（万元）</p>" + "<p>900</p>";
+                document.getElementById("v6").innerHTML = "<p>总关注数（人）</p>" + "<p>49226</p>";
+                document.getElementById("v7").innerHTML = "<p>总成交量（套）</p>" + "<p>2400</p>";
+                chart_buildYear.setOption(jjq_buildYear);
+                chart_YM_numbers.setOption(jjq_YM_numbers);
+                chart_area_aPrice.setOption(jjq_area_aPrice);
+                chart_roomType.setOption(jjq_roomType);
+                chart_time_aPrice.setOption(jjq_time_Aprice);
+                chart_attention_price.setOption(jjq_price_attention);
+                chart_roomType_area.setOption(jjq_roomType_area);
+                chart_allFloor.setOption(jjq_allfloor);
+                break;
+            case "青羊区":
+                district = 7;
+                document.getElementById("v1").innerHTML = "<p>单位面积价格</p>" + "<p>18579</p>";
+                document.getElementById("v2").innerHTML = "<p>总成交面积（平方米）</p>" + "<p>206631.3</p>";
+                document.getElementById("v3").innerHTML = "<p>总成交额（万元）</p>" + "<p>396948.2</p>";
+                document.getElementById("v4").innerHTML = "<p>最大成交面积（平方米）</p>" + "<p>479</p>";
+                document.getElementById("v5").innerHTML = "<p>最高成交额（万元）</p>" + "<p>1500</p>";
+                document.getElementById("v6").innerHTML = "<p>总关注数（人）</p>" + "<p>51185</p>";
+                document.getElementById("v7").innerHTML = "<p>总成交量（套）</p>" + "<p>2400</p>";
+                chart_buildYear.setOption(qyq_buildYear);
+                chart_YM_numbers.setOption(qyq_YM_numbers);
+                chart_area_aPrice.setOption(qyq_area_aPrice);
+                chart_roomType.setOption(qyq_roomType);
+                chart_time_aPrice.setOption(qyq_time_Aprice);
+                chart_attention_price.setOption(qyq_price_attention);
+                chart_roomType_area.setOption(qyq_roomType_area);
+                chart_allFloor.setOption(qyq_allfloor);
+                break;
+        }
+
+    });
+    chart_area_aPrice.on('click' , function (params) {
+        if(new_in === 2){
+            switch (district) {
+                case 0:
+                    chart_screen_1.setOption(slq_area_aPrice);
+                    document.getElementById('end_1_name').innerText = "面积与单位价格（双流区）";
+                    break;
+                case 1:
+                    chart_screen_1.setOption(chq_area_aPrice);
+                    document.getElementById('end_1_name').innerText = "面积与单位价格（成华区）";
+                    break;
+                case 2:
+                    chart_screen_1.setOption(whq_area_aPrice);
+                    document.getElementById('end_1_name').innerText = "面积与单位价格（武侯区）";
+                    break;
+                case 3:
+                    chart_screen_1.setOption(wjq_area_aPrice);
+                    document.getElementById('end_1_name').innerText = "面积与单位价格（温江区）";
+                    break;
+                case 4:
+                    chart_screen_1.setOption(pdq_area_aPrice);
+                    document.getElementById('end_1_name').innerText = "面积与单位价格（郫都区）";
+                    break;
+                case 5:
+                    chart_screen_1.setOption(jnq_area_aPrice);
+                    document.getElementById('end_1_name').innerText = "面积与单位价格（金牛区）";
+                    break;
+                case 6:
+                    chart_screen_1.setOption(jjq_area_aPrice);
+                    document.getElementById('end_1_name').innerText = "面积与单位价格（锦江区）";
+                    break;
+                case 7:
+                    chart_screen_1.setOption(qyq_area_aPrice);
+                    document.getElementById('end_1_name').innerText = "面积与单位价格（青羊区）";
+                    break;
+            }
+            new_in = 1;
+        }
+        else if(new_in === 1){
+            switch (district) {
+                case 0:
+                    chart_screen_2.setOption(slq_area_aPrice);
+                    document.getElementById('end_2_name').innerText = "面积与单位价格（双流区）";
+                    break;
+                case 1:
+                    chart_screen_2.setOption(chq_area_aPrice);
+                    document.getElementById('end_2_name').innerText = "面积与单位价格（成华区）";
+                    break;
+                case 2:
+                    chart_screen_2.setOption(whq_area_aPrice);
+                    document.getElementById('end_2_name').innerText = "面积与单位价格（武侯区）";
+                    break;
+                case 3:
+                    chart_screen_2.setOption(wjq_area_aPrice);
+                    document.getElementById('end_2_name').innerText = "面积与单位价格（温江区）";
+                    break;
+                case 4:
+                    chart_screen_2.setOption(pdq_area_aPrice);
+                    document.getElementById('end_2_name').innerText = "面积与单位价格（郫都区）";
+                    break;
+                case 5:
+                    chart_screen_2.setOption(jnq_area_aPrice);
+                    document.getElementById('end_2_name').innerText = "面积与单位价格（金牛区）";
+                    break;
+                case 6:
+                    chart_screen_2.setOption(jjq_area_aPrice);
+                    document.getElementById('end_2_name').innerText = "面积与单位价格（锦江区）";
+                    break;
+                case 7:
+                    chart_screen_2.setOption(qyq_area_aPrice);
+                    document.getElementById('end_2_name').innerText = "面积与单位价格（青羊区）";
+                    break;
+            }
+            new_in = 2;
+        }
+    })
+    chart_YM_numbers.on('click' , function (params) {
+        if(new_in === 2){
+            switch (district) {
+                case 0:
+                    chart_screen_1.setOption(slq_YM_numbers);
+                    document.getElementById('end_1_name').innerText = "挂牌量与时间（双流区）";
+                    break;
+                case 1:
+                    chart_screen_1.setOption(chq_YM_numbers);
+                    document.getElementById('end_1_name').innerText = "挂牌量与时间（成华区）";
+                    break;
+                case 2:
+                    chart_screen_1.setOption(whq_YM_numbers);
+                    document.getElementById('end_1_name').innerText = "挂牌量与时间（武侯区）";
+                    break;
+                case 3:
+                    chart_screen_1.setOption(wjq_YM_numbers);
+                    document.getElementById('end_1_name').innerText = "挂牌量与时间（温江区）";
+                    break;
+                case 4:
+                    chart_screen_1.setOption(pdq_YM_numbers);
+                    document.getElementById('end_1_name').innerText = "挂牌量与时间（郫都区）";
+                    break;
+                case 5:
+                    chart_screen_1.setOption(jnq_YM_numbers);
+                    document.getElementById('end_1_name').innerText = "挂牌量与时间（金牛区）";
+                    break;
+                case 6:
+                    chart_screen_1.setOption(jjq_YM_numbers);
+                    document.getElementById('end_1_name').innerText = "挂牌量与时间（锦江区）";
+                    break;
+                case 7:
+                    chart_screen_1.setOption(qyq_YM_numbers);
+                    document.getElementById('end_1_name').innerText = "挂牌量与时间（青羊区）";
+                    break;
+            }
+            new_in = 1;
+        }
+        else if(new_in === 1){
+            switch (district) {
+                case 0:
+                    chart_screen_2.setOption(slq_YM_numbers);
+                    document.getElementById('end_2_name').innerText = "挂牌量与时间（双流区）";
+                    break;
+                case 1:
+                    chart_screen_2.setOption(chq_YM_numbers);
+                    document.getElementById('end_2_name').innerText = "挂牌量与时间（成华区）";
+                    break;
+                case 2:
+                    chart_screen_2.setOption(whq_YM_numbers);
+                    document.getElementById('end_2_name').innerText = "挂牌量与时间（武侯区）";
+                    break;
+                case 3:
+                    chart_screen_2.setOption(wjq_YM_numbers);
+                    document.getElementById('end_2_name').innerText = "挂牌量与时间（温江区）";
+                    break;
+                case 4:
+                    chart_screen_2.setOption(pdq_YM_numbers);
+                    document.getElementById('end_2_name').innerText = "挂牌量与时间（郫都区）";
+                    break;
+                case 5:
+                    chart_screen_2.setOption(jnq_YM_numbers);
+                    document.getElementById('end_2_name').innerText = "挂牌量与时间（金牛区）";
+                    break;
+                case 6:
+                    chart_screen_2.setOption(jjq_YM_numbers);
+                    document.getElementById('end_2_name').innerText = "面积与单位价格（锦江区）";
+                    break;
+                case 7:
+                    chart_screen_2.setOption(qyq_YM_numbers);
+                    document.getElementById('end_2_name').innerText = "面积与单位价格（青羊区）";
+                    break;
+            }
+            new_in = 2;
+        }
+    })
+    chart_buildYear.on('click' , function (params) {
+        if(new_in === 2){
+            switch (district) {
+                case 0:
+                    chart_screen_1.setOption(slq_buildYear);
+                    document.getElementById('end_1_name').innerText = "建造年份（双流区）";
+                    break;
+                case 1:
+                    chart_screen_1.setOption(chq_buildYear);
+                    document.getElementById('end_1_name').innerText = "建造年份（成华区）";
+                    break;
+                case 2:
+                    chart_screen_1.setOption(whq_buildYear);
+                    document.getElementById('end_1_name').innerText = "建造年份（武侯区）";
+                    break;
+                case 3:
+                    chart_screen_1.setOption(wjq_buildYear);
+                    document.getElementById('end_1_name').innerText = "建造年份（温江区）";
+                    break;
+                case 4:
+                    chart_screen_1.setOption(pdq_buildYear);
+                    document.getElementById('end_1_name').innerText = "建造年份（郫都区）";
+                    break;
+                case 5:
+                    chart_screen_1.setOption(jnq_buildYear);
+                    document.getElementById('end_1_name').innerText = "建造年份（金牛区）";
+                    break;
+                case 6:
+                    chart_screen_1.setOption(jjq_buildYear);
+                    document.getElementById('end_1_name').innerText = "建造年份（锦江区）";
+                    break;
+                case 7:
+                    chart_screen_1.setOption(qyq_buildYear);
+                    document.getElementById('end_1_name').innerText = "建造年份（青羊区）";
+                    break;
+            }
+            new_in = 1;
+        }
+        else if(new_in === 1){
+            switch (district) {
+                case 0:
+                    chart_screen_2.setOption(slq_buildYear);
+                    document.getElementById('end_2_name').innerText = "建造年份（双流区）";
+                    break;
+                case 1:
+                    chart_screen_2.setOption(chq_buildYear);
+                    document.getElementById('end_2_name').innerText = "建造年份（成华区）";
+                    break;
+                case 2:
+                    chart_screen_2.setOption(whq_buildYear);
+                    document.getElementById('end_2_name').innerText = "建造年份（武侯区）";
+                    break;
+                case 3:
+                    chart_screen_2.setOption(wjq_buildYear);
+                    document.getElementById('end_2_name').innerText = "建造年份（温江区）";
+                    break;
+                case 4:
+                    chart_screen_2.setOption(pdq_buildYear);
+                    document.getElementById('end_2_name').innerText = "建造年份（郫都区）";
+                    break;
+                case 5:
+                    chart_screen_2.setOption(jnq_buildYear);
+                    document.getElementById('end_2_name').innerText = "建造年份（金牛区）";
+                    break;
+                case 6:
+                    chart_screen_2.setOption(jjq_buildYear);
+                    document.getElementById('end_2_name').innerText = "建造年份（锦江区）";
+                    break;
+                case 7:
+                    chart_screen_2.setOption(qyq_buildYear);
+                    document.getElementById('end_2_name').innerText = "建造年份（青羊区）";
+                    break;
+            }
+            new_in = 2;
+        }
+    })
+    chart_roomType.on('click' , function (params) {
+        if(new_in === 2){
+            switch (district) {
+                case 0:
+                    chart_screen_1.setOption(slq_roomType);
+                    document.getElementById('end_1_name').innerText = "房型数量和单位价格（双流区）";
+                    break;
+                case 1:
+                    chart_screen_1.setOption(chq_roomType);
+                    document.getElementById('end_1_name').innerText = "房型数量和单位价格（成华区）";
+                    break;
+                case 2:
+                    chart_screen_1.setOption(whq_roomType);
+                    document.getElementById('end_1_name').innerText = "房型数量和单位价格（武侯区）";
+                    break;
+                case 3:
+                    chart_screen_1.setOption(wjq_roomType);
+                    document.getElementById('end_1_name').innerText = "房型数量和单位价格（温江区）";
+                    break;
+                case 4:
+                    chart_screen_1.setOption(pdq_roomType);
+                    document.getElementById('end_1_name').innerText = "房型数量和单位价格（郫都区）";
+                    break;
+                case 5:
+                    chart_screen_1.setOption(jnq_roomType);
+                    document.getElementById('end_1_name').innerText = "房型数量和单位价格（金牛区）";
+                    break;
+                case 6:
+                    chart_screen_1.setOption(jjq_roomType);
+                    document.getElementById('end_1_name').innerText = "房型数量和单位价格（锦江区）";
+                    break;
+                case 7:
+                    chart_screen_1.setOption(qyq_roomType);
+                    document.getElementById('end_1_name').innerText = "房型数量和单位价格（青羊区）";
+                    break;
+            }
+            new_in = 1;
+        }
+        else if(new_in === 1){
+            switch (district) {
+                case 0:
+                    chart_screen_2.setOption(slq_roomType);
+                    document.getElementById('end_2_name').innerText = "房型数量和单位价格（双流区）";
+                    break;
+                case 1:
+                    chart_screen_2.setOption(chq_roomType);
+                    document.getElementById('end_2_name').innerText = "房型数量和单位价格（成华区）";
+                    break;
+                case 2:
+                    chart_screen_2.setOption(whq_roomType);
+                    document.getElementById('end_2_name').innerText = "房型数量和单位价格（武侯区）";
+                    break;
+                case 3:
+                    chart_screen_2.setOption(wjq_roomType);
+                    document.getElementById('end_2_name').innerText = "房型数量和单位价格（温江区）";
+                    break;
+                case 4:
+                    chart_screen_2.setOption(pdq_roomType);
+                    document.getElementById('end_2_name').innerText = "房型数量和单位价格（郫都区）";
+                    break;
+                case 5:
+                    chart_screen_2.setOption(jnq_roomType);
+                    document.getElementById('end_2_name').innerText = "房型数量和单位价格（金牛区）";
+                    break;
+                case 6:
+                    chart_screen_2.setOption(jjq_roomType);
+                    document.getElementById('end_2_name').innerText = "房型数量和单位价格（锦江区）";
+                    break;
+                case 7:
+                    chart_screen_2.setOption(qyq_roomType);
+                    document.getElementById('end_2_name').innerText = "房型数量和单位价格（青羊区）";
+                    break;
+            }
+            new_in = 2;
+        }
+    })
+    chart_time_aPrice.on('click' , function (params) {
+        if(new_in === 2){
+            switch (district) {
+                case 0:
+                    chart_screen_1.setOption(slq_time_Aprice);
+                    document.getElementById('end_1_name').innerText = "时间与单位价格（双流区）";
+                    break;
+                case 1:
+                    chart_screen_1.setOption(chq_time_Aprice);
+                    document.getElementById('end_1_name').innerText = "时间与单位价格（成华区）";
+                    break;
+                case 2:
+                    chart_screen_1.setOption(whq_time_Aprice);
+                    document.getElementById('end_1_name').innerText = "时间与单位价格（武侯区）";
+                    break;
+                case 3:
+                    chart_screen_1.setOption(wjq_time_Aprice);
+                    document.getElementById('end_1_name').innerText = "时间与单位价格（温江区）";
+                    break;
+                case 4:
+                    chart_screen_1.setOption(pdq_time_Aprice);
+                    document.getElementById('end_1_name').innerText = "时间与单位价格（郫都区）";
+                    break;
+                case 5:
+                    chart_screen_1.setOption(jnq_time_Aprice);
+                    document.getElementById('end_1_name').innerText = "时间与单位价格（金牛区）";
+                    break;
+                case 6:
+                    chart_screen_1.setOption(jjq_time_Aprice);
+                    document.getElementById('end_1_name').innerText = "时间与单位价格（锦江区）";
+                    break;
+                case 7:
+                    chart_screen_1.setOption(qyq_time_Aprice);
+                    document.getElementById('end_1_name').innerText = "时间与单位价格（青羊区）";
+                    break;
+            }
+            new_in = 1;
+        }
+        else if(new_in === 1){
+            switch (district) {
+                case 0:
+                    chart_screen_2.setOption(slq_time_Aprice);
+                    document.getElementById('end_2_name').innerText = "时间与单位价格（双流区）";
+                    break;
+                case 1:
+                    chart_screen_2.setOption(chq_time_Aprice);
+                    document.getElementById('end_2_name').innerText = "时间与单位价格（成华区）";
+                    break;
+                case 2:
+                    chart_screen_2.setOption(whq_time_Aprice);
+                    document.getElementById('end_2_name').innerText = "时间与单位价格（武侯区）";
+                    break;
+                case 3:
+                    chart_screen_2.setOption(wjq_time_Aprice);
+                    document.getElementById('end_2_name').innerText = "时间与单位价格（温江区）";
+                    break;
+                case 4:
+                    chart_screen_2.setOption(pdq_time_Aprice);
+                    document.getElementById('end_2_name').innerText = "时间与单位价格（郫都区）";
+                    break;
+                case 5:
+                    chart_screen_2.setOption(jnq_time_Aprice);
+                    document.getElementById('end_2_name').innerText = "时间与单位价格（金牛区）";
+                    break;
+                case 6:
+                    chart_screen_2.setOption(jjq_time_Aprice);
+                    document.getElementById('end_2_name').innerText = "时间与单位价格（锦江区）";
+                    break;
+                case 7:
+                    chart_screen_2.setOption(qyq_time_Aprice);
+                    document.getElementById('end_2_name').innerText = "时间与单位价格（青羊区）";
+                    break;
+            }
+            new_in = 2;
+        }
+    })
+    chart_attention_price.on('click' , function (params) {
+        if(new_in === 2){
+            switch (district) {
+                case 0:
+                    chart_screen_1.setOption(slq_price_attention);
+                    document.getElementById('end_1_name').innerText = "总价与关注数（双流区）";
+                    break;
+                case 1:
+                    chart_screen_1.setOption(chq_price_attention);
+                    document.getElementById('end_1_name').innerText = "总价与关注数（成华区）";
+                    break;
+                case 2:
+                    chart_screen_1.setOption(whq_price_attention);
+                    document.getElementById('end_1_name').innerText = "总价与关注数（武侯区）";
+                    break;
+                case 3:
+                    chart_screen_1.setOption(wjq_price_attention);
+                    document.getElementById('end_1_name').innerText = "总价与关注数（温江区）";
+                    break;
+                case 4:
+                    chart_screen_1.setOption(pdq_price_attention);
+                    document.getElementById('end_1_name').innerText = "总价与关注数（郫都区）";
+                    break;
+                case 5:
+                    chart_screen_1.setOption(jnq_price_attention);
+                    document.getElementById('end_1_name').innerText = "总价与关注数（金牛区）";
+                    break;
+                case 6:
+                    chart_screen_1.setOption(jjq_price_attention);
+                    document.getElementById('end_1_name').innerText = "总价与关注数（锦江区）";
+                    break;
+                case 7:
+                    chart_screen_1.setOption(qyq_price_attention);
+                    document.getElementById('end_1_name').innerText = "总价与关注数（青羊区）";
+                    break;
+            }
+            new_in = 1;
+        }
+        else if(new_in === 1){
+            switch (district) {
+                case 0:
+                    chart_screen_2.setOption(slq_price_attention);
+                    document.getElementById('end_2_name').innerText = "总价与关注数（双流区）";
+                    break;
+                case 1:
+                    chart_screen_2.setOption(chq_price_attention);
+                    document.getElementById('end_2_name').innerText = "总价与关注数（成华区）";
+                    break;
+                case 2:
+                    chart_screen_2.setOption(whq_price_attention);
+                    document.getElementById('end_2_name').innerText = "总价与关注数（武侯区）";
+                    break;
+                case 3:
+                    chart_screen_2.setOption(wjq_price_attention);
+                    document.getElementById('end_2_name').innerText = "总价与关注数（温江区）";
+                    break;
+                case 4:
+                    chart_screen_2.setOption(pdq_price_attention);
+                    document.getElementById('end_2_name').innerText = "总价与关注数（郫都区）";
+                    break;
+                case 5:
+                    chart_screen_2.setOption(jnq_price_attention);
+                    document.getElementById('end_2_name').innerText = "总价与关注数（金牛区）";
+                    break;
+                case 6:
+                    chart_screen_2.setOption(jjq_price_attention);
+                    document.getElementById('end_2_name').innerText = "总价与关注数（锦江区）";
+                    break;
+                case 7:
+                    chart_screen_2.setOption(qyq_price_attention);
+                    document.getElementById('end_2_name').innerText = "总价与关注数（青羊区）";
+                    break;
+            }
+            new_in = 2;
+        }
+    })
+    chart_roomType_area.on('click' , function (params) {
+        if(new_in === 2){
+            switch (district) {
+                case 0:
+                    chart_screen_1.setOption(slq_roomType_area);
+                    document.getElementById('end_1_name').innerText = "房型和面积（双流区）";
+                    break;
+                case 1:
+                    chart_screen_1.setOption(chq_roomType_area);
+                    document.getElementById('end_1_name').innerText = "房型和面积（成华区）";
+                    break;
+                case 2:
+                    chart_screen_1.setOption(whq_roomType_area);
+                    document.getElementById('end_1_name').innerText = "房型和面积（武侯区）";
+                    break;
+                case 3:
+                    chart_screen_1.setOption(wjq_roomType_area);
+                    document.getElementById('end_1_name').innerText = "房型和面积（温江区）";
+                    break;
+                case 4:
+                    chart_screen_1.setOption(pdq_roomType_area);
+                    document.getElementById('end_1_name').innerText = "房型和面积（郫都区）";
+                    break;
+                case 5:
+                    chart_screen_1.setOption(jnq_roomType_area);
+                    document.getElementById('end_1_name').innerText = "房型和面积（金牛区）";
+                    break;
+                case 6:
+                    chart_screen_1.setOption(jjq_roomType_area);
+                    document.getElementById('end_1_name').innerText = "房型和面积（锦江区）";
+                    break;
+                case 7:
+                    chart_screen_1.setOption(qyq_roomType_area);
+                    document.getElementById('end_1_name').innerText = "房型和面积（青羊区）";
+                    break;
+            }
+            new_in = 1;
+        }
+        else if(new_in === 1){
+            switch (district) {
+                case 0:
+                    chart_screen_2.setOption(slq_roomType_area);
+                    document.getElementById('end_2_name').innerText = "房型和面积（双流区）";
+                    break;
+                case 1:
+                    chart_screen_2.setOption(chq_roomType_area);
+                    document.getElementById('end_2_name').innerText = "房型和面积（成华区）";
+                    break;
+                case 2:
+                    chart_screen_2.setOption(whq_roomType_area);
+                    document.getElementById('end_2_name').innerText = "房型和面积（武侯区）";
+                    break;
+                case 3:
+                    chart_screen_2.setOption(wjq_roomType_area);
+                    document.getElementById('end_2_name').innerText = "房型和面积（温江区）";
+                    break;
+                case 4:
+                    chart_screen_2.setOption(pdq_roomType_area);
+                    document.getElementById('end_2_name').innerText = "房型和面积（郫都区）";
+                    break;
+                case 5:
+                    chart_screen_2.setOption(jnq_roomType_area);
+                    document.getElementById('end_2_name').innerText = "房型和面积（金牛区）";
+                    break;
+                case 6:
+                    chart_screen_2.setOption(jjq_roomType_area);
+                    document.getElementById('end_2_name').innerText = "房型和面积（锦江区）";
+                    break;
+                case 7:
+                    chart_screen_2.setOption(qyq_roomType_area);
+                    document.getElementById('end_2_name').innerText = "房型和面积（青羊区）";
+                    break;
+            }
+            new_in = 2;
+        }
+    })
+    chart_allFloor.on('click' , function (params) {
+        if(new_in === 2){
+            switch (district) {
+                case 0:
+                    chart_screen_1.setOption(slq_allfloor);
+                    document.getElementById('end_1_name').innerText = "总楼层数占比（双流区）";
+                    break;
+                case 1:
+                    chart_screen_1.setOption(chq_allfloor);
+                    document.getElementById('end_1_name').innerText = "总楼层数占比（成华区）";
+                    break;
+                case 2:
+                    chart_screen_1.setOption(whq_allfloor);
+                    document.getElementById('end_1_name').innerText = "总楼层数占比（武侯区）";
+                    break;
+                case 3:
+                    chart_screen_1.setOption(wjq_allfloor);
+                    document.getElementById('end_1_name').innerText = "总楼层数占比（温江区）";
+                    break;
+                case 4:
+                    chart_screen_1.setOption(pdq_allfloor);
+                    document.getElementById('end_1_name').innerText = "总楼层数占比（郫都区）";
+                    break;
+                case 5:
+                    chart_screen_1.setOption(jnq_allfloor);
+                    document.getElementById('end_1_name').innerText = "总楼层数占比（金牛区）";
+                    break;
+                case 6:
+                    chart_screen_1.setOption(jjq_allfloor);
+                    document.getElementById('end_1_name').innerText = "总楼层数占比（锦江区）";
+                    break;
+                case 7:
+                    chart_screen_1.setOption(qyq_allfloor);
+                    document.getElementById('end_1_name').innerText = "总楼层数占比（青羊区）";
+                    break;
+            }
+            new_in = 1;
+        }
+        else if(new_in === 1){
+            switch (district) {
+                case 0:
+                    chart_screen_2.setOption(slq_allfloor);
+                    document.getElementById('end_2_name').innerText = "总楼层数占比（双流区）";
+                    break;
+                case 1:
+                    chart_screen_2.setOption(chq_allfloor);
+                    document.getElementById('end_2_name').innerText = "总楼层数占比（成华区）";
+                    break;
+                case 2:
+                    chart_screen_2.setOption(whq_allfloor);
+                    document.getElementById('end_2_name').innerText = "总楼层数占比（武侯区）";
+                    break;
+                case 3:
+                    chart_screen_2.setOption(wjq_allfloor);
+                    document.getElementById('end_2_name').innerText = "总楼层数占比（温江区）";
+                    break;
+                case 4:
+                    chart_screen_2.setOption(pdq_allfloor);
+                    document.getElementById('end_2_name').innerText = "总楼层数占比（郫都区）";
+                    break;
+                case 5:
+                    chart_screen_2.setOption(jnq_allfloor);
+                    document.getElementById('end_2_name').innerText = "总楼层数占比（金牛区）";
+                    break;
+                case 6:
+                    chart_screen_2.setOption(jjq_allfloor);
+                    document.getElementById('end_2_name').innerText = "总楼层数占比（锦江区）";
+                    break;
+                case 7:
+                    chart_screen_2.setOption(qyq_allfloor);
+                    document.getElementById('end_2_name').innerText = "总楼层数占比（青羊区）";
+                    break;
+            }
+            new_in = 2;
+        }
+    })
+</script>
+</body>
+</html>

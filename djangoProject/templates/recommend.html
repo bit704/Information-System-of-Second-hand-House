@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>房屋推荐</title>
+    <link rel="stylesheet" type="text/css" href="static/css/form.css"/>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=4zOe4FEzuYr4M6VagaegLzRvxeZKRe9M"></script>
+</head>
+<body>
+<div class="header" style="background: #E27575">
+	<ul class="nav">
+		<li>
+			<a href="home">首页</a>
+		</li>
+        <li>
+			<a href="visualization">可视化展示</a>
+		</li>
+        <li>
+			<a href="forecast">价格预测</a>
+		</li>
+        <li>
+			<a href="recommend">房屋推荐</a>
+		</li>
+	</ul>
+</div>
+<div id="form_frame" class="form_frame">
+    <div class="title">
+        买方推荐系统
+    </div>
+    <div class="cForm">
+        <form action="/recommend" method="post">
+            {% csrf_token %}
+            <label class="label_input">
+                <span>区:</span>
+                <select name="区" class="text_field">
+                    <option value=0>双流</option>
+                    <option value=1>天府新区</option>
+                    <option value=2>成华</option>
+                    <option value=3>武侯</option>
+                    <option value=4>温江</option>
+                    <option value=5>郫都</option>
+                    <option value=6>金牛</option>
+                    <option value=7>锦江</option>
+                    <option value=8>青羊</option>
+                    <option value=9>高新</option>
+                    <option value=10>高新西</option>
+                </select>
+            </label>
+
+            <label class="label_input">
+                <span>房型:</span>
+                <input type="text" name="房型" class="text_field">
+            </label>
+
+            <label class="label_input">
+                <span>所处楼层级别:</span>
+                <select name="所处楼层级别" class="text_field">
+                    <option value="0">地下室</option>
+                    <option value="1">低楼层</option>
+                    <option value="2">中间楼层</option>
+                    <option value="3">高楼层</option>
+                </select>
+            </label>
+
+            <label class="label_input">
+                <span>总楼层数范围:</span>
+                <input type="int" name="总楼层数下限" class="text_field">
+                <span>~</span>
+                <input type="int" name="总楼层数上限" class="text_field">
+            </label>
+
+            <label class="label_input">
+                <span>建造年份范围:</span>
+                <input type="int" name="建造年份下限" class="text_field">
+                <span>~</span>
+                <input type="int" name="建造年份上限" class="text_field">
+            </label>
+
+            <br>
+            <br>
+            <label class="label_input">
+                <span>面积范围:</span>
+                <input type="double" name="面积下限" class="text_field">
+                <span>~</span>
+                <input type="double" name="面积上限" class="text_field">
+            </label>
+            <label class="label_input">
+                <span>朝向:</span>
+                <select name="朝向" class="text_field">
+                    <option value="1">北</option>
+                    <option value="2">东北</option>
+                    <option value="3">东</option>
+                    <option value="4">东南</option>
+                    <option value="5">南</option>
+                    <option value="6">西南</option>
+                    <option value="7">西</option>
+                    <option value="8">西北</option>
+                </select>
+            </label>
+
+            <label class="label_input">
+                <span>是否近地铁:</span>
+                <select name="是否近地铁" class="text_field">
+                    <option value="1">是</option>
+                    <option value="0">否</option>
+                </select>
+            </label>
+
+            <label class="label_input">
+                <span>单价范围:</span>
+                <input type="double" name="单价下限" class="text_field">
+                <span>~</span>
+                <input type="double" name="单价上限" class="text_field">
+            </label>
+
+            <label class="label_input">
+                <span>总价范围:</span>
+                <input type="double" name="总价下限" class="text_field">
+                <span>~</span>
+                <input type="double" name="总价上限" class="text_field">
+            </label>
+
+            <br>
+            <br>
+            <input type="submit" value="提交" id="submit_btn" class="text_field">
+        </form>
+    </div>
+
+</div>
+<div class="bottom">
+    <div id="result" class="cResult">
+        <div class="title">
+            推荐结果
+        </div>
+        <div class="table">
+                <table>
+                    <tr>
+                        <th>位置</th>
+                        <th>房型</th>
+                        <th>所处楼层级别</th>
+                        <th>总楼层数</th>
+                        <th>建造年份</th>
+                        <th>面积</th>
+                        <th>朝向</th>
+                        <th>是否近地铁</th>
+                        <th>单位价格(元)</th>
+                        <th>总价(万元)</th>
+                    </tr>
+                    {% for i in list %}
+                    <tr>
+                        {% for str in i%}
+                        <td>{{str}}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+        </div>
+
+    </div>
+    <div class="map">
+        <div class="title">
+            地图
+        </div>
+        <div id="baidumap" style="width: 90%;height: 90%;margin-top: 25px"></div>
+    </div>
+
+</div>
+
+<script>
+var points = {{ points|safe }};
+//创建标注点并添加到地图中
+function addMarker(points) {
+    //循环建立标注点
+    for(var i=0, pointsLen = points.length; i<pointsLen; i++) {
+        var point = new BMap.Point(points[i].lng, points[i].lat); //将标注点转化成地图上的点
+        var marker = new BMap.Marker(point); //将点转化成标注点
+        map.addOverlay(marker);  //将标注点添加到地图上
+        //添加监听事件
+        (function() {
+            var thePoint = points[i];
+            marker.addEventListener("click",
+                function() {
+                showInfo(this,thePoint);
+            });
+         })();
+    }
+}
+function showInfo(thisMarker,point) {
+    //获取点的信息
+    var sContent =
+    '<ul style="margin:0 0 5px 0;padding:0.2em 0">'
+    +'<li style="line-height: 26px;font-size: 15px;">'
+    +'<li style="line-height: 26px;font-size: 15px;">'
+    +'<span style="width: 50px;display: inline-block;">位置：</span>' + point.name + '</li>'
+    +'</ul>';
+    var infoWindow = new BMap.InfoWindow(sContent); //创建信息窗口对象
+    thisMarker.openInfoWindow(infoWindow); //图片加载完后重绘infoWindow
+}
+//创建地图
+var map = new BMap.Map("baidumap");
+map.centerAndZoom( "成都");
+map.setCurrentCity("成都");          //设置为成都
+map.addControl(new BMap.MapTypeControl());
+map.enableScrollWheelZoom(true);
+addMarker(points);
+</script>
+
+</body>
+</html>
