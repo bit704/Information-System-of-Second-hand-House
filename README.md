@@ -1,6 +1,8 @@
 # 二手房信息系统
 
-——成都市二手房交易预测及展示系统
+——以成都市为例
+
+在python环境里安装好django和相关依赖，使用命令行进入djangoProject文件夹，输入`python manage.py runserver`命令启动系统。启动后通过http://127.0.0.1:8000/进入系统网站。
 
 ## 首页
 
